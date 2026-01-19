@@ -7,37 +7,43 @@ jobs:
     name: Linux Build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y g++-10-multilib
-    - name: Build
-      run: |
-        make
-        mkdir -p artifact/
-        cp krzymod.so artifact/krzymod.so
-    - name: Create Artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: krzymod-linux
-        path: artifact/
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-10-multilib
+
+      - name: Build
+        run: |
+          make
+          mkdir -p artifact/
+          cp krzymod.so artifact/krzymod.so
+
+      - name: Create Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: krzymod-linux
+          path: artifact/
+
   build-win:
     name: Windows Build
     runs-on: windows-2019
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
+
       - name: Build
         run: |
           cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
           .\MSBuild.exe $Env:GITHUB_WORKSPACE\KrzyMod.sln /t:KrzyMod /p:Configuration=Release /p:Platform=x86
           cd $Env:GITHUB_WORKSPACE
-          mkdir -p artifact/
+          mkdir artifact
           cp bin/krzymod.dll artifact/krzymod.dll
+
       - name: Create Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: krzymod-windows
           path: artifact/
