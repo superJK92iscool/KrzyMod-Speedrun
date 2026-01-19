@@ -11,6 +11,7 @@
 #include GAME(PortalStoriesMel)
 #include GAME(PortalReloaded)
 #include GAME(ThinkingWithTimeMachine)
+#include GAME(Portal2SR)
 
 #define HAS_GAME_FLAG(flag, name)  \
 	if (version & (flag)) {           \
@@ -87,6 +88,7 @@ std::string Game::VersionToString(int version) {
 	auto games = std::string("");
 	while (version > 0) {
 		HAS_GAME_FLAG(SourceGame_Portal2, "Portal 2")
+		HAS_GAME_FLAG(SourceGame_Portal2SR, "Portal 2 Speedrun Mod") 
 		HAS_GAME_FLAG(SourceGame_ApertureTag, "Aperture Tag")
 		HAS_GAME_FLAG(SourceGame_PortalStoriesMel, "Portal Stories: Mel")
 		HAS_GAME_FLAG(SourceGame_ThinkingWithTimeMachine, "Thinking with Time Machine")
