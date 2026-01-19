@@ -21,8 +21,8 @@ jobs:
           mkdir -p artifact/
           cp krzymod.so artifact/krzymod.so
 
-      - name: Create Artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: krzymod-linux
           path: artifact/
@@ -42,8 +42,8 @@ jobs:
           mkdir artifact
           cp bin/krzymod.dll artifact/krzymod.dll
 
-      - name: Create Artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: krzymod-windows
           path: artifact/
